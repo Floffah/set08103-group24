@@ -40,9 +40,9 @@ public class App
 
 
     /**
-     * Attempt connection app to database container
+     * Attempt connection app to mySQL Database
      *
-     * @return Connection class for database connection
+     * @return mySQL database connection class
      */
     private static Connection getConnection() {
         // Connection to the database
@@ -77,9 +77,9 @@ public class App
     }
 
     /**
-     * Disconnect the database connection
+     * Disconnect the mySQL database connection
      *
-     * @param con database connection class
+     * @param con mySQL database connection class
      */
     private static void disconnect(Connection con) {
         if (con != null)
