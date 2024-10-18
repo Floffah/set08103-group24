@@ -14,10 +14,10 @@ public class City {
 
     /**
      * City Constructor
-     * @param name name of city e.g. London
-     * @param countryCode code of country of city location
-     * @param district district name of city location
-     * @param population number of people living in the city e.g. 1200000
+     * @param name name of city | London
+     * @param countryCode code of country of city location | GBR
+     * @param district district name of city location | England
+     * @param population number of people living in the city | 7285000
      */
     private City(String name, String countryCode, String district, Integer population)
     {
@@ -27,7 +27,34 @@ public class City {
         this.population = population;
     }
 
+    /**
+     * Returns property name
+     */
+    public String getName() {
+        return name;
+    }
 
+    /**
+     * Returns property country code
+     */
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    /**
+     * Returns property district
+     */
+    public String getDistrict() {
+        return district;
+    }
+
+
+    /**
+     * Returns property population
+     */
+    public Integer getPopulation() {
+        return population;
+    }
 
     /**
      * Returns toString of City
