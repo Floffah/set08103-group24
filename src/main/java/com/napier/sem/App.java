@@ -2,10 +2,30 @@ package com.napier.sem;
 
 import java.sql.*;
 
+/**
+ * The type App.
+ */
 public class App
 {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args)
     {
+        LoadSQLDriver();
+
+        Connection con = getConnection();
+
+        disconnect(con);
+    }
+
+
+    /**
+     * Attempt to load mySQL driver to app
+     */
+    private static void LoadSQLDriver() {
         try
         {
             // Load Database driver
@@ -16,7 +36,15 @@ public class App
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
+    }
 
+
+    /**
+     * Attempt connection app to mySQL Database
+     *
+     * @return mySQL database connection class
+     */
+    private static Connection getConnection() {
         // Connection to the database
         Connection con = null;
         int retries = 100;
@@ -45,7 +73,15 @@ public class App
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
+        return con;
+    }
 
+    /**
+     * Disconnect the mySQL database connection
+     *
+     * @param con mySQL database connection class
+     */
+    private static void disconnect(Connection con) {
         if (con != null)
         {
             try
