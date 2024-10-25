@@ -1,5 +1,6 @@
 package com.napier.sem;
 
+import java.io.Console;
 import java.sql.*;
 
 /**
@@ -16,7 +17,16 @@ public class App
     {
         LoadSQLDriver();
 
+        System.out.println("hi");
+
         Connection con = getConnection();
+
+        DataCollector datacollector = new DataCollector();
+
+        System.out.println("hi");
+
+        datacollector.GetCityData(con);
+        System.out.println(datacollector);
 
         disconnect(con);
     }
@@ -59,7 +69,7 @@ public class App
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 // Wait a bit
-                Thread.sleep(10000);
+                Thread.sleep(1000);
                 // Exit for loop
                 break;
             }
