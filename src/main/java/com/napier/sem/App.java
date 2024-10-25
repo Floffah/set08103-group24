@@ -3,6 +3,7 @@ package com.napier.sem;
 import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The type App.
@@ -24,8 +25,8 @@ public class App
 
         ArrayList<City> cityData = datacollector.GetCityData(con);
 
-        // Prints all city data as a ArrayList, clean up and make easier to read later
-        // System.out.println(cityData);
+        // City Data View: Prints all city data as a ArrayList, clean up and make easier to read later
+        // System.out.println(Arrays.toString(cityData.toArray()));
 
         disconnect(con);
     }
