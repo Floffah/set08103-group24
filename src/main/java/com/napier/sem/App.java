@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import java.io.Console;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * The type App.
@@ -25,8 +26,8 @@ public class App
 
         System.out.println("hi");
 
-        datacollector.GetCityData(con);
-        System.out.println(datacollector);
+        ArrayList<City> cityData = datacollector.GetCityData(con);
+        System.out.println(cityData);
 
         disconnect(con);
     }
