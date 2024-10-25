@@ -1,5 +1,4 @@
 package com.napier.sem;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -9,7 +8,7 @@ public class DataCollector {
 
 
     /**
-     * Get city data array list.
+     * Get city data as array list.
      *
      * @param con the Sql Database connection
      * @return ArrayList of City Classes
@@ -24,7 +23,7 @@ public class DataCollector {
                     "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population FROM city";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Extract employee information
+            // Extract city information
             ArrayList<City> cities = new ArrayList<>();
             while (rset.next()) {
                 String name = rset.getString("city.Name");
@@ -41,7 +40,7 @@ public class DataCollector {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get salary details");
+            System.out.println("Failed to get city details");
             return null;
         }
     }
