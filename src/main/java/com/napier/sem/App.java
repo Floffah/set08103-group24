@@ -18,13 +18,9 @@ public class App
     {
         LoadSQLDriver();
 
-        System.out.println("hi");
-
         Connection con = getConnection();
 
         DataCollector datacollector = new DataCollector();
-
-        System.out.println("hi");
 
         ArrayList<City> cityData = datacollector.GetCityData(con);
         System.out.println(cityData);
