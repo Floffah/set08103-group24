@@ -1,6 +1,9 @@
 package com.napier.sem;
 
+import java.io.Console;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The type App.
@@ -17,6 +20,13 @@ public class App
         LoadSQLDriver();
 
         Connection con = getConnection();
+
+        DataCollector datacollector = new DataCollector();
+
+        ArrayList<City> cityData = datacollector.GetCityData(con);
+
+        // City Data View: Prints all city data as a ArrayList, clean up and make easier to read later
+        // System.out.println(Arrays.toString(cityData.toArray()));
 
         disconnect(con);
     }
@@ -59,7 +69,7 @@ public class App
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 // Wait a bit
-                Thread.sleep(10000);
+                Thread.sleep(1000);
                 // Exit for loop
                 break;
             }

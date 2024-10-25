@@ -19,7 +19,7 @@ public class City {
      * @param district district name of city location | England
      * @param population number of people living in the city | 7285000
      */
-    private City(String name, String countryCode, String district, Integer population)
+    City(String name, String countryCode, String district, Integer population)
     {
         this.name = name;
         this.countryCode = countryCode;
@@ -61,11 +61,9 @@ public class City {
      */
     @Override
     public String toString() {
-        return "City{" +
-                "name='" + name + '\'' +
+        return  "name='" + name + '\'' +
                 ", countryCode='" + countryCode + '\'' +
                 ", district='" + district + '\'' +
-                ", population=" + population +
-                '}';
+                ", population=" + population + "\n";
     }
 }
