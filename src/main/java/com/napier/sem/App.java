@@ -23,7 +23,9 @@ public class App
         DataCollector datacollector = new DataCollector();
 
         ArrayList<City> cityData = datacollector.GetCityData(con);
-        System.out.println(cityData);
+
+        // Prints all city data as a ArrayList, clean up and make easier to read later
+        // System.out.println(cityData);
 
         disconnect(con);
     }
