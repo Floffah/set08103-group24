@@ -11,6 +11,12 @@ public class App
     static Connection dbCon;
     static DataCollector dataCol;
 
+    public App(){
+        dbCon = getConnection();
+        dataCol = new DataCollector();
+    }
+
+
     /**
      * The entry point of application.
      *
