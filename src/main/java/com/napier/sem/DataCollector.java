@@ -12,7 +12,7 @@ public class DataCollector {
      * @param con the Sql Database connection
      * @return ArrayList of City Classes
      */
-    public ArrayList<City> GetCityData(Connection con){
+    public ArrayList<City> getCityData(Connection con){
 
         try {
             // Create an SQL statement

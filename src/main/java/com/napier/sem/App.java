@@ -1,15 +1,16 @@
 package com.napier.sem;
 
-import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * The type App.
  */
 public class App
 {
+    static Connection dbCon;
+    static DataCollector dataCol;
+
     /**
      * The entry point of application.
      *
@@ -17,25 +18,32 @@ public class App
      */
     public static void main(String[] args)
     {
-        LoadSQLDriver();
+        loadSQLDriver();
 
-        Connection con = getConnection();
-
-        DataCollector datacollector = new DataCollector();
-
-        ArrayList<City> cityData = datacollector.GetCityData(con);
+        dbCon = getConnection();
+        dataCol = new DataCollector();
 
         // City Data View: Prints all city data as a ArrayList, clean up and make easier to read later
         // System.out.println(Arrays.toString(cityData.toArray()));
 
-        disconnect(con);
+        disconnect(dbCon);
+    }
+
+
+    /**
+     * Get city data.
+     *
+     * @return the array list of cities
+     */
+    public ArrayList<City> getCityData() {
+        return dataCol.getCityData(dbCon);
     }
 
 
     /**
      * Attempt to load mySQL driver to app
      */
-    private static void LoadSQLDriver() {
+    private static void loadSQLDriver() {
         try
         {
             // Load Database driver
