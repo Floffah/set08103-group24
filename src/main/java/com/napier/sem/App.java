@@ -12,6 +12,7 @@ public class App
     static DataCollector dataCol;
 
     public App(){
+        loadSQLDriver();
         dbCon = getConnection();
         dataCol = new DataCollector();
     }
