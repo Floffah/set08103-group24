@@ -1,0 +1,26 @@
+ @startuml
+'https://plantuml.com/use-case-diagram
+
+
+
+rectangle Database
+User as User
+rectangle "Population Information System" {
+
+User --> (Use the application)
+(Use the application) --> (Generate report)
+(Generate report) - Database
+(Generate report) ..> (View Countries by population)  : include
+(Generate report) ..> (View Top N Populated Countries)  : include
+(Generate report) ..> (View Cities by population) : include
+(Generate report) ..> (View Top N Populated Cities) : include
+(Generate report) ..> (View Capital Cities by population) : include
+(Generate report) ..> (View Top N Populated Capital Cities) : include
+(Generate report) ..> (View Population Report) : include
+(Generate report) ..> (Provide number of people who speak a certain language) : include
+
+}
+
+
+
+@enduml
