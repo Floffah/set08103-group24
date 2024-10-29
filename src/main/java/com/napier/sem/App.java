@@ -11,10 +11,14 @@ public class App
     static Connection dbCon;
     static DataCollector dataCol;
 
-    public App(){
+    public App(String dbLocation) {
         loadSQLDriver();
-        dbCon = getConnection();
+        dbCon = getConnection(dbLocation);
         dataCol = new DataCollector();
+    }
+
+    public App() {
+        this("db:3306");
     }
 
 
@@ -27,7 +31,13 @@ public class App
     {
         loadSQLDriver();
 
-        dbCon = getConnection();
+        String location = "db:3306";
+
+        if (args.length > 0) {
+            location = args[0];
+        }
+
+        dbCon = getConnection(location);
         dataCol = new DataCollector();
 
         // City Data View: Prints all city data as a ArrayList, clean up and make easier to read later
@@ -69,7 +79,7 @@ public class App
      *
      * @return mySQL database connection class
      */
-    private static Connection getConnection() {
+    private static Connection getConnection(String location) {
         // Connection to the database
         Connection con = null;
         int retries = 100;
@@ -81,7 +91,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(1000);

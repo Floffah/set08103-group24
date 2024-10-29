@@ -10,7 +10,7 @@ public class CityTest
     @BeforeAll
     static void init()
     {
-        app = new App();
+        app = new App("localhost:33060");
     }
 
     @Test
