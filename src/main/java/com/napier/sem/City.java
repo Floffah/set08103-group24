@@ -61,9 +61,7 @@ public class City {
      */
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
-                ", countryCode='" + countryCode + '\'' +
-                ", district='" + district + '\'' +
-                ", population=" + population + "\n";
+        return String.format("%-10s %-15s %-20s %-8s",
+                this.name, this.countryCode, this.district, this.population);
     }
 }
