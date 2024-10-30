@@ -15,6 +15,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          cache: 'maven'
       - name: Package with Maven
         run: mvn package
       - name: Run docker compose
@@ -33,6 +34,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          cache: 'maven'
       - name: Start DB container
         run: docker compose up -d db --abort-on-container-exit
       - name: Run tests with Maven
