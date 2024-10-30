@@ -61,7 +61,7 @@ public class City {
      */
     @Override
     public String toString() {
-        return String.format("%-10s %-15s %-20s %-8s",
+        return String.format("%-30s %-12s %-30s %-10s",
                 this.name, this.countryCode, this.district, this.population);
     }
 }

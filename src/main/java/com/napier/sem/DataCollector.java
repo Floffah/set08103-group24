@@ -30,9 +30,9 @@ public class DataCollector {
                 String district = rset.getString("city.District");
                 Integer population = rset.getInt("city.Population");
 
-                City emp = new City(name, code, district, population);
+                City city = new City(name, code, district, population);
 
-                cities.add(emp);
+                cities.add(city);
             }
             return cities;
         }
