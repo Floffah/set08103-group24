@@ -30,6 +30,7 @@ public class App {
     public static void main(String[] args) {
         App app = new App();
         app.printCityData();
+        app.printCountryData();
         app.disconnect();
     }
 
@@ -106,6 +107,21 @@ public class App {
         // Loop over all cities in the list
         for (City city : cities) {
             System.out.println(city.toString());
+        }
+    }
+
+    /**
+     * Get country data.
+     *
+     * @return the array list of countries
+     */
+    public void printCountryData() {
+        ArrayList<Country> countries = dataCol.getCountryData(dbCon);
+        // Print header
+        System.out.printf("\"%-10s %-20s %-30s %-20s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
         }
     }
 }

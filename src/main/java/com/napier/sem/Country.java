@@ -15,11 +15,11 @@ public class Country {
 
     public int population;
 
-    public String capital;
+    public int capital;
 
 
     // Constructor
-    public Country(String code, String name, String continent, String region, int population, String capital) {
+    public Country(String code, String name, String continent, String region, int population, int capital) {
         this.code = code;
         this.name = name;
         this.continent = continent;
@@ -36,9 +36,7 @@ public class Country {
     }
 
     // Returns name of the country
-    public String getName() {
-        return name;
-    }
+    public String getName() {return name;}
 
     // Returns the continent where the country is located
     public String getContinent() {
@@ -56,20 +54,12 @@ public class Country {
     }
 
     // Returns the capital city of the country
-    public String getCapital() {
-        return capital;
-    }
+    public int getCapital() {return capital;}
 
     // String method to display
     @Override
     public String toString() {
-        return "Country{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", continent='" + continent + '\'' +
-                ", region='" + region + '\'' +
-                ", population=" + population +
-                ", capital='" + capital + '\'' +
-                '}';
+        return String.format("%-10s %-20s %-30s %-20s %-10s %-30s",
+                this.code, this.name, this.continent, this.region, this.population, this.capital);
     }
 }

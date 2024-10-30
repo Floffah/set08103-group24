@@ -5,14 +5,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DataCollector {
-    
+
     /**
      * Get city data as array list.
      *
      * @param con the Sql Database connection
      * @return ArrayList of City Classes
      */
-    public ArrayList<City> getCityData(Connection con){
+    public ArrayList<City> getCityData(Connection con) {
 
         try {
             // Create an SQL statement
@@ -36,11 +36,47 @@ public class DataCollector {
                 cities.add(city);
             }
             return cities;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
+    /**
+     * Get country data as array list.
+     *
+     * @param con the Sql Database connection
+     * @return ArrayList of Country Classes
+     */
+
+    public ArrayList<Country> getCountryData(Connection con) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Corrected SQL query
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
+                            "FROM country";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                String code = rset.getString("Code");
+                String name = rset.getString("Name");
+                String continent = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int population = rset.getInt("Population");
+                int capital = rset.getInt("Capital");
+
+                Country country = new Country(code, name, continent, region, population, capital);
+                countries.add(country);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details");
             return null;
         }
     }
