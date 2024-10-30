@@ -44,4 +44,37 @@ public class DataCollector {
             return null;
         }
     }
+
+
+    public ArrayList<CapitalCity> getCapitalCityData(Connection con){
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population FROM city, country WHERE city.countryCode = country.code AND country.Capital is NOT NULL\n";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population);
+
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
 }

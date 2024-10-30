@@ -108,4 +108,14 @@ public class App {
             System.out.println(city.toString());
         }
     }
+
+    public void printCapitalCityData() {
+        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-12s %-30s %-10s\n", "Name", "Country Code", "Country", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
+        }
+    }
 }
