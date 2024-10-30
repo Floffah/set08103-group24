@@ -53,7 +53,9 @@ public class DataCollector {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population FROM city, country WHERE city.countryCode = country.code AND country.Capital is NOT NULL\n";
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city, country " +
+                            "WHERE city.CountryCode = country.Code AND city.ID = country.Capital AND country.Capital is NOT NULL\n";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -63,8 +65,9 @@ public class DataCollector {
                 String code = rset.getString("city.CountryCode");
                 String district = rset.getString("city.District");
                 Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
 
-                CapitalCity capitalCity = new CapitalCity(name, code, district, population);
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population, country);
 
                 capitalCities.add(capitalCity);
             }

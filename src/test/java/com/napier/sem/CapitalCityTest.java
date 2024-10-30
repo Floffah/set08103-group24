@@ -21,7 +21,7 @@ public class CapitalCityTest
     }
 
     @Test
-    void viewCities()
+    void viewCapitalCities()
     {
         app.printCapitalCityData();
 

@@ -11,8 +11,8 @@ package com.napier.sem;
 public class CapitalCity extends City {
 
 
-    CapitalCity(String name, String countryCode, String district, Integer population)
+    CapitalCity(String name, String countryCode, String district, Integer population, String country)
     {
-        super(name, countryCode, district, population);
+        super(name, countryCode, district, population, country);
     }
 }
