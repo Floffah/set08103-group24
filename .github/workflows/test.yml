@@ -37,3 +37,5 @@ jobs:
         run: docker compose up -d db --abort-on-container-exit
       - name: Run tests with Maven
         run: mvn test
+      - name: Stop DB container
+        run: docker compose down --rmi all
