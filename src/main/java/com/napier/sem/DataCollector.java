@@ -19,7 +19,7 @@ public class DataCollector {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population FROM city";
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name FROM city, country WHERE city.CountryCode = country.Code";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
@@ -29,8 +29,9 @@ public class DataCollector {
                 String code = rset.getString("city.CountryCode");
                 String district = rset.getString("city.District");
                 Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
 
-                City city = new City(name, code, district, population);
+                City city = new City(name, code, district, population, country);
 
                 cities.add(city);
             }
