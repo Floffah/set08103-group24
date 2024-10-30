@@ -34,6 +34,6 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Start DB container
-        run: docker compose up -d db
+        run: docker compose up -d db --abort-on-container-exit
       - name: Run tests with Maven
         run: mvn test
