@@ -102,7 +102,7 @@ public class App {
     public void printCityData() {
         ArrayList<City> cities = dataCol.getCityData(dbCon);
         // Print header
-        System.out.printf("%-30s %-12s %-30s %-10s\n", "Name", "Country Code", "Country", "Population");
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list
         for (City city : cities) {
             System.out.println(city.toString());
