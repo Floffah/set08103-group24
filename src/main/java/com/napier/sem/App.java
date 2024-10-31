@@ -118,7 +118,7 @@ public class App {
     public void printCountryData() {
         ArrayList<Country> countries = dataCol.getCountryData(dbCon);
         // Print header
-        System.out.printf("\"%-10s %-20s %-30s %-20s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
         // Loop over all countries in the list
         for (Country country : countries) {
             System.out.println(country.toString());

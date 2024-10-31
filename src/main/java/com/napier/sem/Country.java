@@ -3,6 +3,8 @@ package com.napier.sem;
 
 // Variables
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Country {
 
     public String code;
@@ -36,7 +38,9 @@ public class Country {
     }
 
     // Returns name of the country
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
 
     // Returns the continent where the country is located
     public String getContinent() {
@@ -54,12 +58,21 @@ public class Country {
     }
 
     // Returns the capital city of the country
-    public int getCapital() {return capital;}
+    public int getCapital() {
+        return capital;
+    }
 
     // String method to display
     @Override
     public String toString() {
-        return String.format("%-10s %-20s %-30s %-20s %-10s %-30s",
-                this.code, this.name, this.continent, this.region, this.population, this.capital);
+        return String.format("%-10s %-40s %-30s %-25s %-10s %-30s",
+                this.code,
+                StringUtils.truncate(this.name, 40),
+                this.continent,
+                StringUtils.truncate(this.region, 25),
+                this.population,
+                this.capital
+        );
+
     }
 }
