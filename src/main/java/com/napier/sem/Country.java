@@ -1,12 +1,16 @@
 package com.napier.sem;
-// This is the class representing a country
 
-// Variables
+
+
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * This is the class representing a country
+ *
+ */
 public class Country {
-
+    //Attributes
     public String code;
 
     public String name;
@@ -20,7 +24,16 @@ public class Country {
     public int capital;
 
 
-    // Constructor
+    /**
+     * Country Constructor
+     * @param code Code for the country e.g. 1
+     * @param name Name for the country e.g. United Kingdom
+     * @param continent Continent for the country e.g. Europe
+     * @param region Region of the country e.g. Western Europe
+     * @param population Population of the country e.g. 186800
+     * @param capital Capitals ID for the country e.g. 1
+      */
+
     public Country(String code, String name, String continent, String region, int population, int capital) {
         this.code = code;
         this.name = name;
@@ -32,37 +45,58 @@ public class Country {
 
     // Getters
 
-    // Returns the country's code
+    /**
+     * Gets the country's code
+     * @return Country code
+     */
     public String getCode() {
         return code;
     }
 
-    // Returns name of the country
+    /**
+     * Gets the name of the country
+     * @return Country name
+     */
     public String getName() {
         return name;
     }
 
-    // Returns the continent where the country is located
+    /**
+     * Gets the continent where the country is located
+     * @return Country continent
+     */
     public String getContinent() {
         return continent;
     }
 
-    // Returns the region where the country is located
+    /**
+     * Gets the region where the country is located
+     * @return Country region
+     */
     public String getRegion() {
         return region;
     }
 
-    // Returns the population of the country
+    /**
+     * Gets the population of the country
+     * @return Country population
+     */
     public int getPopulation() {
         return population;
     }
 
-    // Returns the capital city of the country
+    /**
+     * Gets the capital ID of the country
+     * @return Country capital
+     */
     public int getCapital() {
         return capital;
     }
 
-    // String method to display
+    /**
+     * String method to display
+     * @return Correctly formats the string
+     */
     @Override
     public String toString() {
         return String.format("%-10s %-40s %-30s %-25s %-10s %-30s",
