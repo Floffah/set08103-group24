@@ -49,7 +49,6 @@ public class DataCollector {
      * @param con the Sql Database connection
      * @return ArrayList of Country Classes
      */
-
     public ArrayList<Country> getCountryData(Connection con) {
         try {
             // Create an SQL statement
