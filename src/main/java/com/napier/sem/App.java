@@ -30,6 +30,7 @@ public class App {
     public static void main(String[] args) {
         App app = new App();
         app.printCityData();
+        app.printCountryData();
         app.disconnect();
     }
 
@@ -109,10 +110,40 @@ public class App {
         }
     }
 
+    /**
+     * Get language data.
+     *
+     * @return the array list of languages
+     */
+    public void printLanguageData() {
+        ArrayList<Language> languages = dataCol.getLanguageData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-16s %-8s %3s\n", "Languages", "Country Code", "Official", "Percentage");
+        // Loop over all cities in the list
+        for (Language lan : languages) {
+            System.out.println(lan.toString());
+        }
+    }
+
+    /**
+     * Get country data.
+     *
+     * @return the array list of countries
+     */
+    public void printCountryData() {
+        ArrayList<Country> countries = dataCol.getCountryData(dbCon);
+        // Print header
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
+        }
+    }
+
     public void printCapitalCityData() {
         ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
         // Print header
-        System.out.printf("%-30s %-12s %-30s %-10s\n", "Name", "Country Code", "Country", "Population");
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list
         for (CapitalCity capitalcity : capitalCities) {
             System.out.println(capitalcity.toString());
