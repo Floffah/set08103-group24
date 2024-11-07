@@ -103,8 +103,7 @@ public class App {
     public void printCityData() {
         ArrayList<City> cities = dataCol.getCityData(dbCon);
         // Print header
-      System.out.printf("%-30s %-12s %-30s %-10s\n", "Cities", "Country Code", "Country", "Population");
-
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list
         for (City city : cities) {
             System.out.println(city.toString());
@@ -138,6 +137,16 @@ public class App {
         // Loop over all countries in the list
         for (Country country : countries) {
             System.out.println(country.toString());
+        }
+    }
+
+    public void printCapitalCityData() {
+        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-12s %-30s %-10s\n", "Name", "Country Code", "Country", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
         }
     }
 }
