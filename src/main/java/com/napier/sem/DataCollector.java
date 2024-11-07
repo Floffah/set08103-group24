@@ -49,7 +49,7 @@ public class DataCollector {
      * @param con the Sql Database connection
      * @return ArrayList of Language Classes
      */
-    public ArrayList<Language> getLangaugeData(Connection con){
+    public ArrayList<Language> getLanguageData(Connection con){
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();

@@ -116,7 +116,7 @@ public class App {
      * @return the array list of languages
      */
     public void printLanguageData() {
-        ArrayList<Language> languages = dataCol.getLangaugeData(dbCon);
+        ArrayList<Language> languages = dataCol.getLanguageData(dbCon);
         // Print header
         System.out.printf("%-30s %-16s %-8s %3s\n", "Languages", "Country Code", "Official", "Percentage");
         // Loop over all cities in the list
@@ -143,7 +143,7 @@ public class App {
     public void printCapitalCityData() {
         ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
         // Print header
-        System.out.printf("%-30s %-12s %-30s %-10s\n", "Name", "Country Code", "Country", "Population");
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list
         for (CapitalCity capitalcity : capitalCities) {
             System.out.println(capitalcity.toString());
