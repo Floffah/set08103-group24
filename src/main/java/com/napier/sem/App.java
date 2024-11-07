@@ -108,4 +108,19 @@ public class App {
             System.out.println(city.toString());
         }
     }
+
+    /**
+     * Get language data.
+     *
+     * @return the array list of languages
+     */
+    public void printLanguageData() {
+        ArrayList<City> languages = dataCol.getCityData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-12s %-30s %-10s\n", "Name", "Country Code", "Country", "Population");
+        // Loop over all cities in the list
+        for (Language lan : languages) {
+            System.out.println(lan.toString());
+        }
+    }
 }
