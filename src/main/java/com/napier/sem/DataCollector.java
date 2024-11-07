@@ -76,6 +76,7 @@ public class DataCollector {
         {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Language details");
+            return null;
         }
     }
 
