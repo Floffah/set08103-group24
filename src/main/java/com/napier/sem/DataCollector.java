@@ -43,4 +43,42 @@ public class DataCollector {
             return null;
         }
     }
+
+
+    /**
+     * Get Langauge data as array list.
+     *
+     * @param con the Sql Database connection
+     * @return ArrayList of Language Classes
+     */
+    public ArrayList<Language> getLangaugeData(Connection con){
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT countrylanguage.Language, countrylanguage.CountryCode, countrylanguage.IsOfficial, countrylanguage.Percentage FROM countrylanguage";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<Language> languages = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("countrylanguage.Language");
+                String code = rset.getString("countrylanguage.CountryCode");
+                Boolean official = rset.getBoolean("countrylanguage.IsOfficial");
+                Float percentage = rset.getFloat("countrylanguage.Percentage");
+
+                Language language = new Language(name, code, official, percentage);
+
+                languages.add(language);
+            }
+            return languages;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Language details");
+            return null;
+        }
+    }
 }

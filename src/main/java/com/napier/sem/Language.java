@@ -10,21 +10,21 @@ public class Language {
     public String countryCode;
     public String name;
     public Boolean isOfficial;
-    public Integer percentage;
+    public Float percentage;
 
     /**
      * City Constructor
      * @param countryCode code of country of city location | GBR
      * @param name name of the language | Dutch
      * @param isOfficial whether the language is the official language of the country | True
-     * @param population percentage of language spoken in country | 76.5
+     * @param percentage percentage of language spoken in country | 76.5
      */
-    Language(String name, String countryCode, String district, Integer population)
+    Language(String name, String countryCode, Boolean isOfficial, Float percentage)
     {
         this.name = name;
         this.countryCode = countryCode;
-        this.district = district;
-        this.population = population;
+        this.isOfficial = isOfficial;
+        this.percentage = percentage;
     }
 
     /**
@@ -44,16 +44,16 @@ public class Language {
     /**
      * Returns property district
      */
-    public String getDistrict() {
-        return district;
+    public Boolean getIsOfficial() {
+        return isOfficial;
     }
 
 
     /**
      * Returns property population
      */
-    public Integer getPopulation() {
-        return population;
+    public Float getPercentage() {
+        return percentage;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Language {
      */
     @Override
     public String toString() {
-        return String.format("%-30s %-12s %-30s %-10s",
-                this.name, this.countryCode, this.district, this.population);
+        return String.format("%-30s %-16s %-8s %3s%%",
+                this.name, this.countryCode, this.isOfficial, this.percentage);
     }
 }
