@@ -1,48 +1,48 @@
 package com.napier.sem;
 
-import java.io.Console;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * The type App.
  */
-public class App
-{
+public class App {
+    static Connection dbCon;
+    static DataCollector dataCol;
+
+    public App(String dbLocation) {
+        loadSQLDriver();
+        dbCon = getConnection(dbLocation);
+        dataCol = new DataCollector();
+        String location = "db:3306";
+    }
+
+    public App() {
+        this("db:3306");
+    }
+
+
     /**
      * The entry point of application.
      *
      * @param args the input arguments
      */
-    public static void main(String[] args)
-    {
-        LoadSQLDriver();
-
-        Connection con = getConnection();
-
-        DataCollector datacollector = new DataCollector();
-
-        ArrayList<City> cityData = datacollector.GetCityData(con);
-
-        // City Data View: Prints all city data as a ArrayList, clean up and make easier to read later
-        // System.out.println(Arrays.toString(cityData.toArray()));
-
-        disconnect(con);
+    public static void main(String[] args) {
+        App app = new App();
+        app.printCityData();
+        app.printCountryData();
+        app.disconnect();
     }
 
 
     /**
      * Attempt to load mySQL driver to app
      */
-    private static void LoadSQLDriver() {
-        try
-        {
+    private static void loadSQLDriver() {
+        try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e)
-        {
+        } catch (ClassNotFoundException e) {
             System.out.println("Could not load SQL driver");
             System.exit(-1);
         }
@@ -54,32 +54,26 @@ public class App
      *
      * @return mySQL database connection class
      */
-    private static Connection getConnection() {
+    private static Connection getConnection(String location) {
         // Connection to the database
         Connection con = null;
         int retries = 100;
-        for (int i = 0; i < retries; ++i)
-        {
+        for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
-            try
-            {
+            try {
                 // Wait a bit for db to start
-                Thread.sleep(30000);
+                Thread.sleep(1000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(1000);
                 // Exit for loop
                 break;
-            }
-            catch (SQLException sqle)
-            {
+            } catch (SQLException sqle) {
                 System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
-            {
+            } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
             }
         }
@@ -88,21 +82,71 @@ public class App
 
     /**
      * Disconnect the mySQL database connection
-     *
-     * @param con mySQL database connection class
      */
-    private static void disconnect(Connection con) {
-        if (con != null)
-        {
-            try
-            {
+    public void disconnect() {
+        if (dbCon != null) {
+            try {
                 // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
+                dbCon.close();
+            } catch (Exception e) {
                 System.out.println("Error closing connection to database");
             }
+        }
+    }
+
+
+    /**
+     * Get city data.
+     *
+     * @return the array list of cities
+     */
+    public void printCityData() {
+        ArrayList<City> cities = dataCol.getCityData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (City city : cities) {
+            System.out.println(city.toString());
+        }
+    }
+
+    /**
+     * Get language data.
+     *
+     * @return the array list of languages
+     */
+    public void printLanguageData() {
+        ArrayList<Language> languages = dataCol.getLanguageData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-16s %-8s %3s\n", "Languages", "Country Code", "Official", "Percentage");
+        // Loop over all cities in the list
+        for (Language lan : languages) {
+            System.out.println(lan.toString());
+        }
+    }
+
+    /**
+     * Get country data.
+     *
+     * @return the array list of countries
+     */
+    public void printCountryData() {
+        ArrayList<Country> countries = dataCol.getCountryData(dbCon);
+        // Print header
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
+        }
+    }
+
+    public void printCapitalCityData() {
+        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
         }
     }
 }

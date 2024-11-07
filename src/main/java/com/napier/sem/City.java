@@ -11,20 +11,23 @@ public class City {
     public String countryCode;
     public String district;
     public Integer population;
+    public String country;
 
     /**
      * City Constructor
      * @param name name of city | London
      * @param countryCode code of country of city location | GBR
-     * @param district district name of city location | England
+     * @param district district name of district location | England
      * @param population number of people living in the city | 7285000
+     * @param country name of the country of city location | England
      */
-    City(String name, String countryCode, String district, Integer population)
+    City(String name, String countryCode, String district, Integer population, String country)
     {
         this.name = name;
         this.countryCode = countryCode;
         this.district = district;
         this.population = population;
+        this.country = country;
     }
 
     /**
@@ -61,9 +64,7 @@ public class City {
      */
     @Override
     public String toString() {
-        return  "name='" + name + '\'' +
-                ", countryCode='" + countryCode + '\'' +
-                ", district='" + district + '\'' +
-                ", population=" + population + "\n";
+        return String.format("%-30s %-20s %-30s %-10s",
+                this.name, this.country, this.district, this.population);
     }
 }
