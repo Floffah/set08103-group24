@@ -46,7 +46,7 @@ public class DataCollector {
 
 
     /**
-     * Get Langauge data as array list.
+     * Get Language data as array list.
      *
      * @param con the Sql Database connection
      * @return ArrayList of Language Classes
