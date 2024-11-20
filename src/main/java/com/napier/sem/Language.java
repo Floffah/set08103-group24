@@ -19,7 +19,7 @@ public class Language {
      * @param isOfficial whether the language is the official language of the country | True
      * @param percentage percentage of language spoken in country | 76.5
      */
-    Language(String name, String countryCode, Boolean isOfficial, Float percentage)
+    public Language(String name, String countryCode, Boolean isOfficial, Float percentage)
     {
         this.name = name;
         this.countryCode = countryCode;
