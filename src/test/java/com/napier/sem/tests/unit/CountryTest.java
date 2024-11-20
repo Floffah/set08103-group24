@@ -34,6 +34,10 @@ public class CountryTest {
     void testGetCountryCode() {
         Assertions.assertEquals("1", country.getCode());
     }
+
+    /**
+     * Checks that the {@link Country#getName()} returns the correct values
+     */
     @Test
     void testGetCountryName() {
         Assertions.assertEquals("Kabul", country.getName());
