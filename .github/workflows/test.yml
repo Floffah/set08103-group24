@@ -21,7 +21,7 @@ jobs:
       - name: Run docker compose
         run: docker compose up --abort-on-container-exit
   test:
-    name: Test
+    name: Run Unit Tests & Integration Tests
     runs-on: ubuntu-20.04
     needs: build
     steps:
@@ -41,3 +41,11 @@ jobs:
         run: mvn test
       - name: Stop DB container
         run: docker compose down --rmi all
+      - name: CodeCov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # now required for public repos too
+          directory: ./target/site/jacoco
+          flags: Integration Tests # optional
+          verbose: true # optional (default = false)
+          slug: Floffah/set08103-group24
