@@ -21,7 +21,7 @@ public class City {
      * @param population number of people living in the city | 7285000
      * @param country name of the country of city location | England
      */
-    City(String name, String countryCode, String district, Integer population, String country)
+    public City(String name, String countryCode, String district, Integer population, String country)
     {
         this.name = name;
         this.countryCode = countryCode;
@@ -58,6 +58,11 @@ public class City {
     public Integer getPopulation() {
         return population;
     }
+
+    /**
+     * Returns property country
+     */
+    public String getCountry() { return country; }
 
     /**
      * Returns toString of City
