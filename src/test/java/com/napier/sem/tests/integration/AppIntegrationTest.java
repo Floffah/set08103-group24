@@ -59,4 +59,8 @@ public class AppIntegrationTest {
     void viewLanguages() {
         app.printLanguageData();
     }
+@Test
+    void viewCountriesByContinent() {
+        app.printCountriesByPopulationData("Europe");
+    }
 }
