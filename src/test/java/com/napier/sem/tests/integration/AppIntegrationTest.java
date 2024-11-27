@@ -48,9 +48,7 @@ public class AppIntegrationTest {
      * Ensure that there are no errors when printing the country data
      */
     @Test
-    void viewCountries() {
-        app.printCountryData();
-    }
+    void viewCountries() { app.printCountryData();}
 
     /**
      * Ensure that there are no errors when printing the language data

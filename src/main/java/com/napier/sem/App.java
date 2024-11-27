@@ -160,12 +160,12 @@ public class App {
     }
 
     /**
-     * Get country data.
+     * Get country region by population data.
      *
      * @return the array list of countries
      */
     public void printCountryByRegionPopulationData(String region) {
-        ArrayList<Country> countries = dataCol.getCountriesByContinentPopulation(dbCon, region);
+        ArrayList<Country> countries = dataCol.getCountriesByRegionPopulation(dbCon, region);
         // Print header
         System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
         // Loop over all countries in the list
