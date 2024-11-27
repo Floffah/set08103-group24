@@ -117,6 +117,12 @@ public class DataCollector {
         }
     }
 
+    /**
+     * All the countries in a continent organised by largest population to smallest
+     *
+     * @param con the Sql Database connection
+     * @return ArrayList of Country Classes
+     */
     public ArrayList<Country> getCountriesByPopulation(Connection con, String continent) {
         try {
             // Create an SQL statement

@@ -31,6 +31,8 @@ public class App {
         App app = new App();
         app.printCityData();
         app.printCountryData();
+        String continent = "Asia";  // For example, hardcoded as "Asia"
+        app.printCountryByPopulationData(continent);
         app.disconnect();
     }
 
@@ -145,6 +147,21 @@ public class App {
         // Print header
         System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
+        }
+    }
+
+    /**
+     * Get country data.
+     *
+     * @return the array list of countries
+     */
+    public void printCountryByPopulationData(String continent) {
+        ArrayList<Country> countries = dataCol.getCountriesByPopulation(dbCon, continent);
+        // Print header
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
         for (Country country : countries) {
             System.out.println(country.toString());
         }
