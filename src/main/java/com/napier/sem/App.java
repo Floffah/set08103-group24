@@ -142,16 +142,6 @@ public class App {
         }
     }
 
-    public void printCountriesByPopulationData(String continent) {
-        ArrayList<Country> countries = dataCol.getCountriesByPopulation(dbCon, continent);
-        // Print header
-        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
-        // Loop over all cities in the list
-        for (Country country : countries) {
-            System.out.println(country.toString());
-        }
-    }
-
     /**
      * Get country data.
      *
