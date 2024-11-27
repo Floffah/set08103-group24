@@ -123,7 +123,7 @@ public class DataCollector {
      * @param con the Sql Database connection
      * @return ArrayList of Country Classes
      */
-    public ArrayList<Country> getCountriesByPopulation(Connection con, String continent) {
+    public ArrayList<Country> getCountriesByContinentPopulation(Connection con, String continent) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();

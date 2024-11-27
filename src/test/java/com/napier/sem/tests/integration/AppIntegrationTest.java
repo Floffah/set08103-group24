@@ -61,6 +61,6 @@ public class AppIntegrationTest {
     }
     @Test
     void viewCountriesByContinent() {
-        app.printCountryByPopulationData("Europe");
+        app.printCountryByContinentPopulationData("Europe");
     }
 }
