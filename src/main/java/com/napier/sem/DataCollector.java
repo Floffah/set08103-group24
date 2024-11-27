@@ -159,6 +159,48 @@ public class DataCollector {
         }
     }
 
+    /**
+     * All the countries in a region organised by largest population to smallest.
+     *
+     * @param con the Sql Database connection
+     * @return ArrayList of Country Classes
+     */
+    public ArrayList<Country> getCountriesByRegionPopulation(Connection con, String region) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // SQL query to get all countries from the specified region, sorted by population
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
+                            "FROM country " +
+                            "WHERE country.Region = '" + region + "' " +  // Filter by region
+                            "ORDER BY country.Population DESC";  // Sort by population (largest to smallest)
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                String code = rset.getString("Code");
+                String name = rset.getString("Name");
+                String continent = rset.getString("Continent");
+                String regionName = rset.getString("Region");
+                int population = rset.getInt("Population");
+                int capital = rset.getInt("Capital");
+
+                Country country = new Country(code, name, continent, regionName, population, capital);
+                countries.add(country);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country region details by population");
+            return null;
+        }
+    }
+
     public ArrayList<CapitalCity> getCapitalCityData(Connection con){
 
         try {
