@@ -48,9 +48,7 @@ public class AppIntegrationTest {
      * Ensure that there are no errors when printing the country data
      */
     @Test
-    void viewCountries() {
-        app.printCountryData();
-    }
+    void viewCountries() { app.printCountryData();}
 
     /**
      * Ensure that there are no errors when printing the language data
@@ -59,8 +57,12 @@ public class AppIntegrationTest {
     void viewLanguages() {
         app.printLanguageData();
     }
+
     @Test
     void viewCountriesByContinent() {
         app.printCountryByContinentPopulationData("Europe");
     }
+
+    @Test
+    void viewCountriesByRegion() {app.printCountryByRegionPopulationData("North America");}
 }
