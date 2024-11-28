@@ -36,6 +36,7 @@ public class App {
         app.printCountryByPopulationData();
         app.printCountryByContinentPopulationData(continent);
         app.printCountryByRegionPopulationData(region);
+        app.printCityByPopulationData();
         app.disconnect();
     }
 
@@ -107,6 +108,21 @@ public class App {
      */
     public void printCityData() {
         ArrayList<City> cities = dataCol.getCityData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (City city : cities) {
+            System.out.println(city.toString());
+        }
+    }
+
+    /**
+     * Get city by population data.
+     *
+     * @return the array list of cities
+     */
+    public void printCityByPopulationData() {
+        ArrayList<City> cities = dataCol.getCityByPopulationData(dbCon);
         // Print header
         System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list
