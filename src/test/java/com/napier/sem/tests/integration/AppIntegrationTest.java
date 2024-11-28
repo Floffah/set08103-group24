@@ -115,4 +115,16 @@ public class AppIntegrationTest {
             app.printPopulationForRegion("North merica");
         });
     }
+
+    @Test
+    void viewPopulationForCountry() {
+        app.printPopulationForCountry("United Kingdom");
+    }
+
+    @Test
+    void tryViewPopulationForInvalidCountry() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForCountry("United Kingom");
+        });
+    }
 }

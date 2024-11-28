@@ -426,4 +426,36 @@ public class DataCollector {
             return null;
         }
     }
+
+    public PopulationData getPopulationForCountry(Connection con, String country) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(country.Code) as countriesChecked, SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
+                            "FROM country, city " +
+                            "WHERE country.Code = city.CountryCode AND country.Name = '" + country + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("countriesChecked") == 0) {
+                    throw new NullPointerException("No population data found for country");
+                }
+
+                populationData.total = rset.getLong("total");
+                populationData.inCities = rset.getLong("inCities");
+                populationData.outwithCities = rset.getLong("outwithCities");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for country");
+            return null;
+        }
+    }
 }
