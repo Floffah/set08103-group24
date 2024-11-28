@@ -231,6 +231,61 @@ public class App {
             System.out.println(country.toString());
         }
     }
+    /**
+     * Get Capital City in the world Data
+     *
+     * @return the array list of Capital Cities in the world
+     */
+    public void printCapitalCityInWorldData() {
+        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityInWorldData(dbCon);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
+        }
+    }
+    /**
+     * Get Capital City by continent Data
+     *
+     * @return the array list of Capital Cities by Continent
+     */
+    public void printCapitalCityByContinentData(String continent) {
+        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityByContinentData(dbCon,  continent);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
+        }
+    }
+
+    /**
+     * Get Capital cities by region data.
+     *
+     * @return the array list of Capital Cities by region
+     */
+    public void printCapitalCityByRegionData(String region) {
+        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityByRegionData(dbCon, region);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
+        }
+    }
+
+
+    public void printTopNCapitalCityInWorldData(int nProvidedByUser) {
+        ArrayList<CapitalCity> capitalCities = dataCol.getTopNCapitalCityInWorldData(dbCon, nProvidedByUser);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
+        }
+    }
+
 
     /**
      * Get country data.
@@ -247,8 +302,24 @@ public class App {
         }
     }
 
-    public void printCapitalCityData() {
-        ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
+    public void printTopNCapitalCityByContinentData(String continent, int nProvidedByUser) {
+        ArrayList<CapitalCity> capitalCities = dataCol.getTopNCapitalCityByContinentData(dbCon,  continent, nProvidedByUser);
+        // Print header
+        System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
+        // Loop over all cities in the list
+        for (CapitalCity capitalcity : capitalCities) {
+            System.out.println(capitalcity.toString());
+        }
+    }
+
+
+    /**
+     * Get Top N Capital cities by region data.
+     *
+     * @return the array list of Capital Cities by region
+     */
+    public void printTopNCapitalCityRegionData(String region, int nProvidedByUser) {
+        ArrayList<CapitalCity> capitalCities = dataCol.getTopNCapitalCityRegionData(dbCon, region, nProvidedByUser);
         // Print header
         System.out.printf("%-30s %-20s %-30s %-10s\n", "Name", "Country", "District", "Population");
         // Loop over all cities in the list

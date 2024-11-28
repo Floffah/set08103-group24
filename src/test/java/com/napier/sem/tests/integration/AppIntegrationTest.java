@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Scanner;
+
 /**
  * This class is responsible for testing the entire application, from the database connection to the data retrieval to closing the connection
  */
@@ -45,13 +47,7 @@ public class AppIntegrationTest {
         app.disconnect();
     }
 
-    /**
-     * Ensure that there are no errors when printing the capital city data
-     */
-    @Test
-    void viewCapitalCities() {
-        app.printCapitalCityData();
-    }
+
 
     /**
      * Ensure that there are no errors when printing the city data
@@ -93,7 +89,44 @@ public class AppIntegrationTest {
     void viewTopNCountryByRegionPopulation() {app.printTopNCountryByRegionPopulationData("North America", 5);}
 
     @Test
-    void viewCountriesByRegion() {app.printCountryByRegionPopulationData("North America");}
+    void viewCountriesByRegion() {
+        app.printCountryByRegionPopulationData("North America");
+    }
+    /**
+     * Ensure that there are no errors when printing the capital city data
+     */
+    @Test
+    void viewCapitalCities() {
+        app.printCapitalCityInWorldData();
+    }
+    @Test
+    void viewCapitalCitiesByContinent() {
+        app.printCapitalCityByContinentData("Europe");
+    }
+    @Test
+    void viewCapitalCitiesByRegion() {
+        app.printCapitalCityByRegionData("North America");
+    }
+    @Test
+    void viewTopNCapitalCitiesByPopulation() {
+        app.printTopNCapitalCityInWorldData(5);
+    }
+    @Test
+    void viewTopNCapitalCitiesByContinent() {
+        app.printTopNCapitalCityByContinentData("Europe", 5);
+    }
+    @Test
+    void viewTopNCapitalCitiesByRegion(){
+        String region = "North America";
+        /*
+        System.out.println("Enter Top N Capital Cities by region: " + region);
+
+        Scanner scn = new Scanner(System.in);
+        int nProvidedByUser = scn.nextInt();;
+        */
+        int nProvidedByUser = 5;
+        app.printTopNCapitalCityRegionData(region,nProvidedByUser);
+    }
 
     /**
      * Ensure that there are no errors when printing the population of a continent
