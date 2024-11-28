@@ -369,21 +369,27 @@ public class DataCollector {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
+                    "SELECT COUNT(country.Code) as countriesChecked, SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
                             "FROM country, city " +
                             "WHERE country.Code = city.CountryCode AND country.Continent = '" + continent + "'";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract population information
             PopulationData populationData = new PopulationData();
+
             while (rset.next()) {
+                if (rset.getInt("countriesChecked") == 0) {
+                    throw new NullPointerException("No population data found for continent");
+                }
+
                 populationData.total = rset.getLong("total");
                 populationData.inCities = rset.getLong("inCities");
                 populationData.outwithCities = rset.getLong("outwithCities");
             }
+
             return populationData;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             System.out.println("Failed to get population details for continent");
             return null;
         }

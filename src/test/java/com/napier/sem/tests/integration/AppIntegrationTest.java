@@ -2,6 +2,7 @@ package com.napier.sem.tests.integration;
 
 import com.napier.sem.App;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,23 @@ public class AppIntegrationTest {
      */
     @BeforeAll
     static void init() {
-        app = new App("localhost:33060");
+        app = new App();
+    }
+
+    /**
+     * Load the SQL driver
+     */
+    @BeforeAll
+    static void loadSQLDriver() {
+        App.loadSQLDriver();
+    }
+
+    /**
+     * Connect to the database
+     */
+    @BeforeAll
+    static void connect() {
+        app.connect("localhost:33060");
     }
 
     /**
@@ -78,5 +95,12 @@ public class AppIntegrationTest {
     @Test
     void viewPopulationForContinent() {
         app.printPopulationForContinent("Europe");
+    }
+
+    @Test
+    public void tryViewPopulationForInvalidContinent() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForContinent("Eurpe");
+        });
     }
 }
