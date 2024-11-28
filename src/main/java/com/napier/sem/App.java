@@ -232,4 +232,9 @@ public class App {
             System.out.println(capitalcity.toString());
         }
     }
+
+    public void printPopulationForContinent(String continent) {
+        PopulationData popData = dataCol.getPopulationForContinent(dbCon, continent);
+        System.out.println(popData.toString());
+    }
 }
