@@ -31,9 +31,9 @@ public class App {
         App app = new App();
         app.printCityData();
         app.printCountryData();
-        app.printCountryByPopulationData();
         String continent = "Asia";  // For example, hardcoded as "Asia"
         String region = "Caribbean";  // For example, hardcoded as "Caribbean"
+        app.printCountryByPopulationData();
         app.printCountryByContinentPopulationData(continent);
         app.printCountryByRegionPopulationData(region);
         app.disconnect();
