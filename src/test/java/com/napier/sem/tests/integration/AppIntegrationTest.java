@@ -98,9 +98,21 @@ public class AppIntegrationTest {
     }
 
     @Test
-    public void tryViewPopulationForInvalidContinent() {
+    void tryViewPopulationForInvalidContinent() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             app.printPopulationForContinent("Eurpe");
+        });
+    }
+
+    @Test
+    void viewPopulationForRegion() {
+        app.printPopulationForRegion("North America");
+    }
+
+    @Test
+    void tryViewPopulationForInvalidRegion() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForRegion("North merica");
         });
     }
 }
