@@ -45,7 +45,7 @@ public class AppIntegrationTest {
     }
 
     @Test
-    void viewCitiesByPopulation() {app.printCityByPopulationData();}
+    void viewCitiesByPopulation() {app.printCityByPopulationData("GBR");}
 
     /**
      * Ensure that there are no errors when printing the country data

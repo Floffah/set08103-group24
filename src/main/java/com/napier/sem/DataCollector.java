@@ -43,17 +43,18 @@ public class DataCollector {
         }
     }
 
-    public ArrayList<City> getCityByPopulationData(Connection con) {
+    public ArrayList<City> getCityByPopulationData(Connection con, String countryCode) {
 
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                    "SELECT city.Name, city.CountryCode, country.Name, city.District, city.Population " +
                             "FROM city " +
-                            "JOIN country ON country.Code = city.CountryCode " +
-                            "ORDER BY city.Population DESC";
+                            "JOIN country ON city.CountryCode = country.Code " +
+                            "WHERE city.CountryCode = '" + countryCode + "' " + // Filter by country code
+                            "ORDER BY city.Population DESC";  // Sort by population (largest to smallest)
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
