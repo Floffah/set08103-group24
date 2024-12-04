@@ -538,11 +538,49 @@ public class DataCollector {
                 populationData.inCities = rset.getLong("inCities");
                 populationData.outwithCities = rset.getLong("outwithCities");
             }
+            
+            if (populationData.total == 0) {
+                throw new NullPointerException("No population data found for world");
+            }
 
             return populationData;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to get population details for world");
+            return null;
+        }
+    }
+    
+    public PopulationData getPopulationOfLanguageSpeakers(Connection con, String language) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Population AS total, countrylanguage.Percentage as percentageSpeakers " +
+                            "FROM country, countrylanguage " +
+                            "WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.Language = '" + language + "' ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            long totalPopulation = 0;
+            
+            while (rset.next()) {
+                totalPopulation += rset.getLong("total") * rset.getLong("percentageSpeakers") / 100;
+            }
+            
+            if (totalPopulation == 0) {
+                throw new NullPointerException("No population data found for language speakers");
+            }
+            
+            populationData.total = totalPopulation;
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for language speakers");
             return null;
         }
     }

@@ -92,11 +92,17 @@ public class AppIntegrationTest {
     @Test
     void viewCountriesByRegion() {app.printCountryByRegionPopulationData("North America");}
 
+    /**
+     * Ensure that there are no errors when printing the population of a continent
+     */
     @Test
     void viewPopulationForContinent() {
         app.printPopulationForContinent("Europe");
     }
 
+    /**
+     * Make sure that an error is thrown when trying to view the population of an invalid continent
+     */
     @Test
     void tryViewPopulationForInvalidContinent() {
         Assertions.assertThrows(NullPointerException.class, () -> {
@@ -104,11 +110,17 @@ public class AppIntegrationTest {
         });
     }
 
+    /**
+     * Ensure that there are no errors when printing the population of a region
+     */
     @Test
     void viewPopulationForRegion() {
         app.printPopulationForRegion("North America");
     }
 
+    /**
+     * Make sure that an error is thrown when trying to view the population of an invalid region
+     */
     @Test
     void tryViewPopulationForInvalidRegion() {
         Assertions.assertThrows(NullPointerException.class, () -> {
@@ -116,44 +128,91 @@ public class AppIntegrationTest {
         });
     }
 
+    /**
+     * Ensure that there are no errors when printing the population of a country
+     */
     @Test
     void viewPopulationForCountry() {
         app.printPopulationForCountry("United Kingdom");
     }
 
+    /**
+     * Make sure that an error is thrown when trying to view the population of an invalid country
+     */
     @Test
     void tryViewPopulationForInvalidCountry() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             app.printPopulationForCountry("United Kingom");
         });
     }
-    
+
+    /**
+     * Ensure that there are no errors when printing the population of a district
+     */
     @Test
     void viewPopulationForDistrict() {
         app.printPopulationForDistrict("São Paulo");
     }
-    
+
+    /**
+     * Make sure that an error is thrown when trying to view the population of an invalid district
+     */
     @Test
     void tryViewPopulationForInvalidDistrict() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             app.printPopulationForDistrict("So Pulo");
         });
     }
-    
+
+    /**
+     * Ensure that there are no errors when printing the population of a city
+     */
     @Test
     void viewPopulationForCity() {
         app.printPopulationForCity("London");
     }
-    
+
+    /**
+     * Make sure that an error is thrown when trying to view the population of an invalid city
+     */
     @Test
     void tryViewPopulationForInvalidCity() {
         Assertions.assertThrows(NullPointerException.class, () -> {
             app.printPopulationForCity("Lndon");
         });
     }
-    
+
+    /**
+     * Ensure that there are no errors when printing the population of the world
+     */
     @Test
     void viewPopulationOfWorld() {
         app.printPopulationOfWorld();
+    }
+    
+    /**
+     * Ensure that there are no errors when printing the population of a language
+     */
+    @Test
+    void viewPopulationOfLanguage() {
+        app.printPopulationOfLanguageSpeakers("English");
+    }
+
+    /**
+     * Make sure that an error is thrown when trying to view the population of an invalid language
+     */
+    @Test
+    void tryViewPopulationOfInvalidLanguage() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationOfLanguageSpeakers("Englsh");
+        });
+    }
+
+    /**
+     * Ensure that there are no errors when printing the population of popular languages
+     */
+    @Test
+    void viewPopulationOfPopularLanguages() {
+        app.printPopulationOfPopularLanguages();
     }
 }
