@@ -538,6 +538,10 @@ public class DataCollector {
                 populationData.inCities = rset.getLong("inCities");
                 populationData.outwithCities = rset.getLong("outwithCities");
             }
+            
+            if (populationData.total == 0) {
+                throw new NullPointerException("No population data found for world");
+            }
 
             return populationData;
         } catch (Exception e) {
