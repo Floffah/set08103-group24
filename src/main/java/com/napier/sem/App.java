@@ -157,6 +157,21 @@ public class App {
         }
     }
 
+    /**
+     * Get country data.
+     *
+     * @return the array list of countries
+     */
+    public void printTopNCountryByContinentPopulation(String continent, int nProvidedByUser) {
+        ArrayList<Country> countries = dataCol.getTopNCountryByContinentPopulation(dbCon, continent, nProvidedByUser);
+        // Print header
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
+        }
+    }
+
     public void printCapitalCityData() {
         ArrayList<CapitalCity> capitalCities = dataCol.getCapitalCityData(dbCon);
         // Print header
