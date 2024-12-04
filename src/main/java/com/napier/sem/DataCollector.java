@@ -238,6 +238,49 @@ public class DataCollector {
     }
 
     /**
+     * The top N populated countries in a continent where N is provided by the user.
+     *
+     * @param con the Sql Database connection
+     * @return ArrayList of Country Classes
+     */
+    public ArrayList<Country> getTopNCountryByContinentPopulation(Connection con, String continent, int nProvidedByUser) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // SQL query to get all countries from the specified continent, sorted by population
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
+                            "FROM country " +
+                            "WHERE country.Continent = '" + continent + "' " +  // Filter by continent
+                            "ORDER BY country.Population DESC " +
+                            "LIMIT " + nProvidedByUser + ";";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                String code = rset.getString("Code");
+                String name = rset.getString("Name");
+                String continentName = rset.getString("Continent");
+                String region = rset.getString("Region");
+                int population = rset.getInt("Population");
+                int capital = rset.getInt("Capital");
+
+                Country country = new Country(code, name, continentName, region, population, capital);
+                countries.add(country);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country details by population");
+            return null;
+        }
+    }
+
+    /**
      * All the countries in a region organised by largest population to smallest.
      *
      * @param con the Sql Database connection
