@@ -571,6 +571,10 @@ public class DataCollector {
                 totalPopulation += rset.getLong("total") * rset.getLong("percentageSpeakers") / 100;
             }
             
+            if (totalPopulation == 0) {
+                throw new NullPointerException("No population data found for language speakers");
+            }
+            
             populationData.total = totalPopulation;
 
             return populationData;
