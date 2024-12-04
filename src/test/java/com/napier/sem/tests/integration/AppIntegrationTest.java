@@ -127,4 +127,16 @@ public class AppIntegrationTest {
             app.printPopulationForCountry("United Kingom");
         });
     }
+    
+    @Test
+    void viewPopulationForDistrict() {
+        app.printPopulationForDistrict("São Paulo");
+    }
+    
+    @Test
+    void tryViewPopulationForInvalidDistrict() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForDistrict("So Pulo");
+        });
+    }
 }

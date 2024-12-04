@@ -269,4 +269,14 @@ public class App {
 
         System.out.println(popData.toString());
     }
+    
+    public void printPopulationForDistrict(String district) {
+        PopulationData popData = dataCol.getPopulationForDistrict(dbCon, district);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
 }

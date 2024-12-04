@@ -458,4 +458,34 @@ public class DataCollector {
             return null;
         }
     }
+    
+    public PopulationData getPopulationForDistrict(Connection con, String district) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(city.ID) as citiesChecked, SUM(city.Population) AS total " +
+                            "FROM city " +
+                            "WHERE city.District = '" + district + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("citiesChecked") == 0) {
+                    throw new NullPointerException("No population data found for district");
+                }
+
+                populationData.total = rset.getLong("total");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for district");
+            return null;
+        }
+    }
 }
