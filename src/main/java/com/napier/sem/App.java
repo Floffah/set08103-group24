@@ -2,6 +2,7 @@ package com.napier.sem;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type App.
@@ -298,5 +299,44 @@ public class App {
         }
 
         System.out.println(popData.toString());
+    }
+    
+    public void printPopulationOfLanguageSpeakers(String language) {
+        PopulationData popData = dataCol.getPopulationOfLanguageSpeakers(dbCon, language);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
+    
+    public void printPopulationOfPopularLanguages() {
+        // get the population of the world
+        PopulationData worldPopData = dataCol.getPopulationOfWorld(dbCon);
+        
+        List<LanguagePopulationData> langPopData = new ArrayList<>();
+        
+        // Get all the languages
+        PopulationData chinesePopData = dataCol.getPopulationOfLanguageSpeakers(dbCon, "Chinese");
+        langPopData.add(new LanguagePopulationData("Chinese", worldPopData.total, chinesePopData));
+        PopulationData englishPopData = dataCol.getPopulationOfLanguageSpeakers(dbCon, "English");
+        langPopData.add(new LanguagePopulationData("English", worldPopData.total, englishPopData));
+        PopulationData hindiPopData = dataCol.getPopulationOfLanguageSpeakers(dbCon, "Hindi");
+        langPopData.add(new LanguagePopulationData("Hindi", worldPopData.total, hindiPopData));
+        PopulationData spanishPopData = dataCol.getPopulationOfLanguageSpeakers(dbCon, "Spanish");
+        langPopData.add(new LanguagePopulationData("Spanish", worldPopData.total, spanishPopData));
+        PopulationData arabicPopData = dataCol.getPopulationOfLanguageSpeakers(dbCon, "Arabic");
+        langPopData.add(new LanguagePopulationData("Arabic", worldPopData.total, arabicPopData));
+        
+        // Sort the list of languages by percentage of speakers
+        langPopData.sort((a, b) -> (int) (b.total - a.total));
+        
+
+        System.out.format("%-20s %-20s %-20s\n", "Language", "Percentage", "Total");
+        
+        for (LanguagePopulationData lang : langPopData) {
+            System.out.println(lang.toString());
+        }
     }
 }

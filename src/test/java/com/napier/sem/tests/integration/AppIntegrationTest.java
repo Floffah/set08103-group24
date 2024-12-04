@@ -156,4 +156,41 @@ public class AppIntegrationTest {
     void viewPopulationOfWorld() {
         app.printPopulationOfWorld();
     }
+    
+    @Test
+    void viewPopulationOfChineseSpeakers() {
+        app.printPopulationOfLanguageSpeakers("Chinese");
+    }
+    
+    @Test
+    void viewPopulationOfEnglishSpeakers() {
+        app.printPopulationOfLanguageSpeakers("English");
+    }
+    
+    @Test
+    void viewPopulationOfHindiSpeakers() {
+        app.printPopulationOfLanguageSpeakers("Hindi");
+    }
+    
+    @Test
+    void viewPopulationOfSpanishSpeakers() {
+        app.printPopulationOfLanguageSpeakers("Spanish");
+    }
+    
+    @Test
+    void viewPopulationOfArabicSpeakers() {
+        app.printPopulationOfLanguageSpeakers("Arabic");
+    }
+    
+    @Test
+    void tryViewPopulationOfInvalidLanguage() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationOfLanguageSpeakers("Englsh");
+        });
+    }
+    
+    @Test
+    void viewPopulationOfPopularLanguages() {
+        app.printPopulationOfPopularLanguages();
+    }
 }

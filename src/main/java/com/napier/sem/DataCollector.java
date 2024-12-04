@@ -546,4 +546,34 @@ public class DataCollector {
             return null;
         }
     }
+    
+    public PopulationData getPopulationOfLanguageSpeakers(Connection con, String language) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT country.Population AS total, countrylanguage.Percentage as percentageSpeakers " +
+                            "FROM country, countrylanguage " +
+                            "WHERE country.Code = countrylanguage.CountryCode AND countrylanguage.Language = '" + language + "' ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            long totalPopulation = 0;
+            
+            while (rset.next()) {
+                totalPopulation += rset.getLong("total") * rset.getLong("percentageSpeakers") / 100;
+            }
+            
+            populationData.total = totalPopulation;
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for language speakers");
+            return null;
+        }
+    }
 }
