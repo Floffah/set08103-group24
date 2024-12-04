@@ -2,6 +2,7 @@ package com.napier.sem.tests.integration;
 
 import com.napier.sem.App;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,23 @@ public class AppIntegrationTest {
      */
     @BeforeAll
     static void init() {
-        app = new App("localhost:33060");
+        app = new App();
+    }
+
+    /**
+     * Load the SQL driver
+     */
+    @BeforeAll
+    static void loadSQLDriver() {
+        App.loadSQLDriver();
+    }
+
+    /**
+     * Connect to the database
+     */
+    @BeforeAll
+    static void connect() {
+        app.connect("localhost:33060");
     }
 
     /**
@@ -74,4 +91,69 @@ public class AppIntegrationTest {
 
     @Test
     void viewCountriesByRegion() {app.printCountryByRegionPopulationData("North America");}
+
+    @Test
+    void viewPopulationForContinent() {
+        app.printPopulationForContinent("Europe");
+    }
+
+    @Test
+    void tryViewPopulationForInvalidContinent() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForContinent("Eurpe");
+        });
+    }
+
+    @Test
+    void viewPopulationForRegion() {
+        app.printPopulationForRegion("North America");
+    }
+
+    @Test
+    void tryViewPopulationForInvalidRegion() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForRegion("North merica");
+        });
+    }
+
+    @Test
+    void viewPopulationForCountry() {
+        app.printPopulationForCountry("United Kingdom");
+    }
+
+    @Test
+    void tryViewPopulationForInvalidCountry() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForCountry("United Kingom");
+        });
+    }
+    
+    @Test
+    void viewPopulationForDistrict() {
+        app.printPopulationForDistrict("São Paulo");
+    }
+    
+    @Test
+    void tryViewPopulationForInvalidDistrict() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForDistrict("So Pulo");
+        });
+    }
+    
+    @Test
+    void viewPopulationForCity() {
+        app.printPopulationForCity("London");
+    }
+    
+    @Test
+    void tryViewPopulationForInvalidCity() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForCity("Lndon");
+        });
+    }
+    
+    @Test
+    void viewPopulationOfWorld() {
+        app.printPopulationOfWorld();
+    }
 }

@@ -356,4 +356,194 @@ public class DataCollector {
             return null;
         }
     }
+
+    /**
+     * Get the number of people living in cities and outwith cities for a continent
+     * @param con the Sql Database connection
+     * @param continent the continent to get the population data for
+     * @return PopulationData object containing the total population, population in cities, and population outwith cities
+     */
+    public PopulationData getPopulationForContinent(Connection con, String continent) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(country.Code) as countriesChecked, SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
+                            "FROM country, city " +
+                            "WHERE country.Code = city.CountryCode AND country.Continent = '" + continent + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("countriesChecked") == 0) {
+                    throw new NullPointerException("No population data found for continent");
+                }
+
+                populationData.total = rset.getLong("total");
+                populationData.inCities = rset.getLong("inCities");
+                populationData.outwithCities = rset.getLong("outwithCities");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for continent");
+            return null;
+        }
+    }
+
+    public PopulationData getPopulationForRegion(Connection con, String region) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(country.Code) as countriesChecked, SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
+                            "FROM country, city " +
+                            "WHERE country.Code = city.CountryCode AND country.Region = '" + region + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("countriesChecked") == 0) {
+                    throw new NullPointerException("No population data found for region");
+                }
+
+                populationData.total = rset.getLong("total");
+                populationData.inCities = rset.getLong("inCities");
+                populationData.outwithCities = rset.getLong("outwithCities");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for region");
+            return null;
+        }
+    }
+
+    public PopulationData getPopulationForCountry(Connection con, String country) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(country.Code) as countriesChecked, SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
+                            "FROM country, city " +
+                            "WHERE country.Code = city.CountryCode AND country.Name = '" + country + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("countriesChecked") == 0) {
+                    throw new NullPointerException("No population data found for country");
+                }
+
+                populationData.total = rset.getLong("total");
+                populationData.inCities = rset.getLong("inCities");
+                populationData.outwithCities = rset.getLong("outwithCities");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for country");
+            return null;
+        }
+    }
+    
+    public PopulationData getPopulationForDistrict(Connection con, String district) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(city.ID) as citiesChecked, SUM(city.Population) AS total " +
+                            "FROM city " +
+                            "WHERE city.District = '" + district + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("citiesChecked") == 0) {
+                    throw new NullPointerException("No population data found for district");
+                }
+
+                populationData.total = rset.getLong("total");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for district");
+            return null;
+        }
+    }
+    
+    public PopulationData getPopulationForCity(Connection con, String city) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT COUNT(city.ID) as citiesChecked, SUM(city.Population) AS total " +
+                            "FROM city " +
+                            "WHERE city.Name = '" + city + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                if (rset.getInt("citiesChecked") == 0) {
+                    throw new NullPointerException("No population data found for city");
+                }
+
+                populationData.total = rset.getLong("total");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for city");
+            return null;
+        }
+    }
+    
+    public PopulationData getPopulationOfWorld(Connection con) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT SUM(country.Population) AS total, SUM(city.Population) AS inCities, SUM(country.Population) - SUM(city.Population) AS outwithCities " +
+                            "FROM country, city " +
+                            "WHERE country.Code = city.CountryCode";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract population information
+            PopulationData populationData = new PopulationData();
+
+            while (rset.next()) {
+                populationData.total = rset.getLong("total");
+                populationData.inCities = rset.getLong("inCities");
+                populationData.outwithCities = rset.getLong("outwithCities");
+            }
+
+            return populationData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to get population details for world");
+            return null;
+        }
+    }
 }

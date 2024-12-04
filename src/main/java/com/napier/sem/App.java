@@ -10,15 +10,18 @@ public class App {
     static Connection dbCon;
     static DataCollector dataCol;
 
+    /**
+     * Initialise the app with a database connection
+     * @param dbLocation the host:port of the database
+     */
     public App(String dbLocation) {
         loadSQLDriver();
         dbCon = getConnection(dbLocation);
         dataCol = new DataCollector();
-        String location = "db:3306";
     }
 
     public App() {
-        this("db:3306");
+        dataCol = new DataCollector();
     }
 
 
@@ -28,7 +31,7 @@ public class App {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-        App app = new App();
+        App app = new App("db:3306");
         app.printCityData();
         app.printCountryData();
         String continent = "Asia";  // For example, hardcoded as "Asia"
@@ -46,7 +49,7 @@ public class App {
     /**
      * Attempt to load mySQL driver to app
      */
-    private static void loadSQLDriver() {
+    public static void loadSQLDriver() {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -86,6 +89,10 @@ public class App {
             }
         }
         return con;
+    }
+
+    public void connect(String location) {
+        dbCon = getConnection(location);
     }
 
     /**
@@ -231,5 +238,65 @@ public class App {
         for (CapitalCity capitalcity : capitalCities) {
             System.out.println(capitalcity.toString());
         }
+    }
+
+    public void printPopulationForContinent(String continent) {
+        PopulationData popData = dataCol.getPopulationForContinent(dbCon, continent);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
+
+    public void printPopulationForRegion(String region) {
+        PopulationData popData = dataCol.getPopulationForRegion(dbCon, region);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
+
+    public void printPopulationForCountry(String country) {
+        PopulationData popData = dataCol.getPopulationForCountry(dbCon, country);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
+    
+    public void printPopulationForDistrict(String district) {
+        PopulationData popData = dataCol.getPopulationForDistrict(dbCon, district);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
+    
+    public void printPopulationForCity(String city) {
+        PopulationData popData = dataCol.getPopulationForCity(dbCon, city);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
+    
+    public void printPopulationOfWorld() {
+        PopulationData popData = dataCol.getPopulationOfWorld(dbCon);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
     }
 }
