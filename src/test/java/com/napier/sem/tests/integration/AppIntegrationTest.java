@@ -139,4 +139,16 @@ public class AppIntegrationTest {
             app.printPopulationForDistrict("So Pulo");
         });
     }
+    
+    @Test
+    void viewPopulationForCity() {
+        app.printPopulationForCity("London");
+    }
+    
+    @Test
+    void tryViewPopulationForInvalidCity() {
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            app.printPopulationForCity("Lndon");
+        });
+    }
 }
