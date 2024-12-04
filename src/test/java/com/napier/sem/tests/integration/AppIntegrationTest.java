@@ -151,4 +151,9 @@ public class AppIntegrationTest {
             app.printPopulationForCity("Lndon");
         });
     }
+    
+    @Test
+    void viewPopulationOfWorld() {
+        app.printPopulationOfWorld();
+    }
 }

@@ -289,4 +289,14 @@ public class App {
 
         System.out.println(popData.toString());
     }
+    
+    public void printPopulationOfWorld() {
+        PopulationData popData = dataCol.getPopulationOfWorld(dbCon);
+
+        if (popData == null) {
+            throw new NullPointerException("Population data is null");
+        }
+
+        System.out.println(popData.toString());
+    }
 }
