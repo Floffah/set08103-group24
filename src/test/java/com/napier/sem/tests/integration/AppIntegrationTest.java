@@ -251,7 +251,7 @@ public class AppIntegrationTest {
      */
     @Test
     void viewTopPopulatedCitiesInDistrictByN() {
-        app.printTopPopulatedCitiesInDistrictByN(5, "Sussex");
+        app.printTopPopulatedCitiesInDistrictByN(5, "Chiapas");
     }
 
     /**
@@ -291,7 +291,7 @@ public class AppIntegrationTest {
      */
     @Test
     void viewTopPopulatedCitiesInDistrict() {
-        app.printTopPopulatedCitiesInDistrict("Sussex");
+        app.printTopPopulatedCitiesInDistrict("Chiapas");
     }
 
 
