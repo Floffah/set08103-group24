@@ -291,7 +291,7 @@ public class AppIntegrationTest {
      */
     @Test
     void viewTopPopulatedCitiesInDistrict() {
-        app.printTopPopulatedCitiesInDistrict("Sussex");
+        app.printTopPopulatedCitiesInDistrict("Chiapas");
     }
 
 
