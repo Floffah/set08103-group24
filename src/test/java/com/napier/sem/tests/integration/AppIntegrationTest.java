@@ -312,6 +312,14 @@ public class AppIntegrationTest {
     }
 
     /**
+     * Ensure that there are no errors when printing the top list of cities populations by country
+     */
+    @Test
+    void viewTopPopulatedCitiesInCountry() {
+        app.printTopPopulatedCitiesInCountry("United Kingdom");
+    }
+
+    /**
      * Ensure that there are no errors when printing the top list of cities populations
      */
     @Test

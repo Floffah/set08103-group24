@@ -1098,6 +1098,39 @@ public class DataCollector {
         }
     }
 
+    public ArrayList<City> viewTopPopulatedCitiesByCountry(Connection con, String countryProvidedByUser) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Name = '" + countryProvidedByUser + "' " +
+                            "ORDER BY Population DESC " + ";";            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<City> cities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
+
+                City city = new City(name, code, district, population, country);
+
+                cities.add(city);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
+
     public ArrayList<City> viewTopPopulatedCitiesInWorld(Connection con) {
         try {
             // Create an SQL statement

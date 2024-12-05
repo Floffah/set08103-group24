@@ -517,6 +517,16 @@ public class App {
             System.out.println(city.toString());
         }    }
 
+    public void printTopPopulatedCitiesInCountry(String country) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByCountry(dbCon, country);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
     public void printTopPopulatedCitiesInWorld() {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInWorld(dbCon);
 
