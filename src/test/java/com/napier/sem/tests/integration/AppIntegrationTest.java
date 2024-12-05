@@ -90,6 +90,9 @@ public class AppIntegrationTest {
     void viewTopNCountryByContinentPopulation() {app.printTopNCountryByContinentPopulationData("South America", 5);}
 
     @Test
+    void viewTopNCountryByRegionPopulation() {app.printTopNCountryByRegionPopulationData("North America", 5);}
+
+    @Test
     void viewCountriesByRegion() {app.printCountryByRegionPopulationData("North America");}
 
     /**
