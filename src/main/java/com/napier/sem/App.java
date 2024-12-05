@@ -434,7 +434,10 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }
+
     }
 
     public void printTopPopulatedCitiesInCountryByN(int N, String country) {
@@ -444,8 +447,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInRegionByN(int N, String region) {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByRegionByN(dbCon, N, region);
@@ -454,8 +458,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInContinentByN(int N, String continent) {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByContinentByN(dbCon, N, continent);
@@ -464,8 +469,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInWorldByN(int N) {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInWorldByN(dbCon, N);
@@ -474,8 +480,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInDistrict(String district) {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInDistrict(dbCon, district);
@@ -484,8 +491,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInRegion(String region) {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByRegion(dbCon, region);
@@ -494,8 +502,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInContinent(String continent) {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByContinent(dbCon, continent);
@@ -504,8 +513,9 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
     public void printTopPopulatedCitiesInWorld() {
         ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInWorld(dbCon);
@@ -514,7 +524,8 @@ public class App {
             throw new NullPointerException("City data is null");
         }
 
-        System.out.println(cityData.toString());
-    }
+        for (City city : cityData) {
+            System.out.println(city.toString());
+        }    }
 
 }
