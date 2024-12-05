@@ -39,7 +39,7 @@ Quick Links:
 | 20 | The top N populated capital cities in the world where N is provided by the user. |  |  |
 | 21 | The top N populated capital cities in a continent where N is provided by the user. |  |  |
 | 22 | The top N populated capital cities in a region where N is provided by the user. |  |  |
-| 23 | The population of people, people living in cities, and people not living in cities in each continent. |  | (input Europe) <img width="233" alt="image" src="https://github.com/user-attachments/assets/d58e20b7-391f-4944-9f5c-95d2b3d8e27c"> |
+| 23 | The population of people, people living in cities, and people not living in cities in each continent. | Yes | (input Europe) <img width="233" alt="image" src="https://github.com/user-attachments/assets/d58e20b7-391f-4944-9f5c-95d2b3d8e27c"> |
 | 24 | The population of people, people living in cities, and people not living in cities in each region. | Yes | (input North America) <img width="239" alt="image" src="https://github.com/user-attachments/assets/d3232854-77ad-4de5-bbdb-4c23ecee70c5"> |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. | Yes | (input United Kingdom) <img width="232" alt="image" src="https://github.com/user-attachments/assets/bf2c58b4-46ee-4434-985e-5f4eef72143b"> |
 | 26 | The population of the world. | Yes | <img width="251" alt="image" src="https://github.com/user-attachments/assets/35466cc4-2f10-477e-8311-e14a330239c9"> |
