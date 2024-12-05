@@ -36,11 +36,10 @@ Quick Links:
 | 16 | The top N populated cities in a district where N is provided by the user. |  |  |
 | 17 | All the capital cities in the world organised by largest population to smallest. | Yes | <img width="752" alt="Screenshot 2024-12-05 at 15 32 09" src="https://github.com/user-attachments/assets/b26e61ff-61f8-451c-b35d-d4932057129f"> |
 | 18 | All the capital cities in a continent organised by largest population to smallest. | Yes | <img width="735" alt="Screenshot 2024-12-05 at 15 32 42" src="https://github.com/user-attachments/assets/41a56f05-02fb-417f-b252-3251fbf28856"> |
-| 19 | All the capital cities in a region organised by largest to smallest. | Yes | | <img width="750" alt="Screenshot 2024-12-05 at 15 33 00" src="https://github.com/user-attachments/assets/3e304052-5dd0-409a-8757-0daacfb99774"> |
-| 20 | The top N populated capital cities in the world where N is provided by the user. |  | <img width="739" alt="Screenshot 2024-12-05 at 15 43 26" src="https://github.com/user-attachments/assets/d1ba4f26-2f65-4c24-b521-7134d50b2be2"> |
-| 21 | The top N populated capital cities in a continent where N is provided by the user. |  | <img width="902" alt="Screenshot 2024-12-05 at 15 43 57" src="https://github.com/user-attachments/assets/e234d553-d21d-4f85-9000-01db54146475">
- |
-| 22 | The top N populated capital cities in a region where N is provided by the user. |  | <img width="740" alt="Screenshot 2024-12-05 at 15 44 35" src="https://github.com/user-attachments/assets/dbfc418d-dfeb-4114-bae8-a5ab3eee89bf"> |
+| 19 | All the capital cities in a region organised by largest to smallest. | Yes | <img width="750" alt="Screenshot 2024-12-05 at 15 33 00" src="https://github.com/user-attachments/assets/3e304052-5dd0-409a-8757-0daacfb99774"> |
+| 20 | The top N populated capital cities in the world where N is provided by the user. | Yes | <img width="739" alt="Screenshot 2024-12-05 at 15 43 26" src="https://github.com/user-attachments/assets/d1ba4f26-2f65-4c24-b521-7134d50b2be2"> |
+| 21 | The top N populated capital cities in a continent where N is provided by the user. | Yes | <img width="902" alt="Screenshot 2024-12-05 at 15 43 57" src="https://github.com/user-attachments/assets/e234d553-d21d-4f85-9000-01db54146475"> |
+| 22 | The top N populated capital cities in a region where N is provided by the user. | Yes | <img width="740" alt="Screenshot 2024-12-05 at 15 44 35" src="https://github.com/user-attachments/assets/dbfc418d-dfeb-4114-bae8-a5ab3eee89bf"> |
 | 23 | The population of people, people living in cities, and people not living in cities in each continent. |  |  |
 | 24 | The population of people, people living in cities, and people not living in cities in each region. |  |  |
 | 25 | The population of people, people living in cities, and people not living in cities in each country. |  |  |
