@@ -48,5 +48,4 @@ Quick Links:
 | 29 | The population of a country. | Yes | (input United Kingdom) <img width="232" alt="image" src="https://github.com/user-attachments/assets/bf2c58b4-46ee-4434-985e-5f4eef72143b"> |
 | 30 | The population of a district. | Yes | (input Sao Paulo) <img width="150" alt="image" src="https://github.com/user-attachments/assets/2e66e8e3-ca30-46e3-ba18-22f7938f3e5e"> |
 | 31 | The population of a city. | Yes | (input London) <img width="166" alt="Screenshot 2024-12-05 at 15 39 07" src="https://github.com/user-attachments/assets/34392783-805c-48ae-9eba-18f957e93673"> |
-| 32 | The number of people who speak xyz languages descending, with percentage of world population | Yes | <img width="447" alt="Screenshot 2024-12-05 at 15 37 29" src="https://github.com/user-attachments/assets/9ea1549b-0e80-4dda-9161-b058df16857f">
- |
+| 32 | The number of people who speak xyz languages descending, with percentage of world population | Yes | <img width="447" alt="Screenshot 2024-12-05 at 15 37 29" src="https://github.com/user-attachments/assets/9ea1549b-0e80-4dda-9161-b058df16857f"> |
