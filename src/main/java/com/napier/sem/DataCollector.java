@@ -199,6 +199,7 @@ public class DataCollector {
      * All the countries in a continent organised by largest population to smallest
      *
      * @param con the Sql Database connection
+     * @param continent the region to get the population data for
      * @return ArrayList of Country Classes
      */
     public ArrayList<Country> getCountriesByContinentPopulation(Connection con, String continent) {
@@ -241,6 +242,8 @@ public class DataCollector {
      * The top N populated countries in a continent where N is provided by the user.
      *
      * @param con the Sql Database connection
+     * @param continent the region to get the population data for
+     * @param nProvidedByUser the user inputs what number of countries they want to see
      * @return ArrayList of Country Classes
      */
     public ArrayList<Country> getTopNCountryByContinentPopulation(Connection con, String continent, int nProvidedByUser) {
@@ -284,6 +287,7 @@ public class DataCollector {
      * All the countries in a region organised by largest population to smallest.
      *
      * @param con the Sql Database connection
+     * @param region the region to get the population data for
      * @return ArrayList of Country Classes
      */
     public ArrayList<Country> getCountriesByRegionPopulation(Connection con, String region) {
@@ -297,6 +301,51 @@ public class DataCollector {
                             "FROM country " +
                             "WHERE country.Region = '" + region + "' " +  // Filter by region
                             "ORDER BY country.Population DESC";  // Sort by population (largest to smallest)
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+
+            // Extract country information
+            ArrayList<Country> countries = new ArrayList<>();
+            while (rset.next()) {
+                String code = rset.getString("Code");
+                String name = rset.getString("Name");
+                String continent = rset.getString("Continent");
+                String regionName = rset.getString("Region");
+                int population = rset.getInt("Population");
+                int capital = rset.getInt("Capital");
+
+                Country country = new Country(code, name, continent, regionName, population, capital);
+                countries.add(country);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get country region details by population");
+            return null;
+        }
+    }
+
+    /**
+     * The top N populated countries in a region where N is provided by the user.
+     *
+     * @param con the Sql Database connection
+     * @param region the region to get the population data for
+     * @param nProvidedByUser the user inputs what number of countries they want to see
+     * @return ArrayList of Country Classes
+     */
+    public ArrayList<Country> getTopNCountryByRegionPopulation(Connection con, String region, int nProvidedByUser) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+
+            // SQL query to get all countries from the specified region, sorted by population
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
+                            "FROM country " +
+                            "WHERE country.Region = '" + region + "' " +  // Filter by region
+                            "ORDER BY country.Population DESC" +
+                            " LIMIT " + nProvidedByUser + ";";  // Sort by population (largest to smallest)
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);

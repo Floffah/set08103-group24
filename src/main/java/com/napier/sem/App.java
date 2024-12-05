@@ -42,6 +42,7 @@ public class App {
         app.printCountryByContinentPopulationData(continent);
         app.printTopNCountryByContinentPopulationData(continent, 5);
         app.printCountryByRegionPopulationData(region);
+        app.printTopNCountryByRegionPopulationData(region, 5);
         app.printCityByPopulationData(countryCode);
         app.disconnect();
     }
@@ -223,6 +224,21 @@ public class App {
      */
     public void printCountryByRegionPopulationData(String region) {
         ArrayList<Country> countries = dataCol.getCountriesByRegionPopulation(dbCon, region);
+        // Print header
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
+        }
+    }
+
+    /**
+     * Get country data.
+     *
+     * @return the array list of countries
+     */
+    public void printTopNCountryByRegionPopulationData(String region, int nProvidedByUser) {
+        ArrayList<Country> countries = dataCol.getTopNCountryByRegionPopulation(dbCon, region, nProvidedByUser);
         // Print header
         System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
         // Loop over all countries in the list
