@@ -426,4 +426,95 @@ public class App {
             System.out.println(lang.toString());
         }
     }
+
+    public void printTopPopulatedCitiesInDistrictByN(int N, String district) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInDistrictByN(dbCon, N, district);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInCountryByN(int N, String country) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByCountryByN(dbCon, N, country);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInRegionByN(int N, String region) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByRegionByN(dbCon, N, region);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInContinentByN(int N, String continent) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByContinentByN(dbCon, N, continent);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInWorldByN(int N) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInWorldByN(dbCon, N);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInDistrict(String district) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInDistrict(dbCon, district);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInRegion(String region) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByRegion(dbCon, region);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInContinent(String continent) {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesByContinent(dbCon, continent);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
+    public void printTopPopulatedCitiesInWorld() {
+        ArrayList<City> cityData = dataCol.viewTopPopulatedCitiesInWorld(dbCon);
+
+        if (cityData == null) {
+            throw new NullPointerException("City data is null");
+        }
+
+        System.out.println(cityData.toString());
+    }
+
 }
