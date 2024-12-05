@@ -105,7 +105,7 @@ public class AppIntegrationTest {
     }
     @Test
     void viewCapitalCitiesByRegion() {
-        app.printCapitalCityByRegionData("North America");
+        app.printCapitalCityByRegionData("Central America");
     }
     @Test
     void viewTopNCapitalCitiesByPopulation() {
@@ -113,17 +113,12 @@ public class AppIntegrationTest {
     }
     @Test
     void viewTopNCapitalCitiesByContinent() {
-        app.printTopNCapitalCityByContinentData("Europe", 5);
+        app.printTopNCapitalCityByContinentData("Africa", 10);
     }
     @Test
     void viewTopNCapitalCitiesByRegion(){
         String region = "North America";
-        /*
-        System.out.println("Enter Top N Capital Cities by region: " + region);
 
-        Scanner scn = new Scanner(System.in);
-        int nProvidedByUser = scn.nextInt();;
-        */
         int nProvidedByUser = 5;
         app.printTopNCapitalCityRegionData(region,nProvidedByUser);
     }
