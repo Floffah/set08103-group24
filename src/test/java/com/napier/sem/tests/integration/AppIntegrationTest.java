@@ -228,7 +228,6 @@ public class AppIntegrationTest {
     void viewPopulationOfLanguage() {
         app.printPopulationOfLanguageSpeakers("English");
     }
-
     /**
      * Make sure that an error is thrown when trying to view the population of an invalid language
      */
@@ -246,4 +245,78 @@ public class AppIntegrationTest {
     void viewPopulationOfPopularLanguages() {
         app.printPopulationOfPopularLanguages();
     }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by district
+     */
+    @Test
+    void viewTopPopulatedCitiesInDistrictByN() {
+        app.printTopPopulatedCitiesInDistrictByN(5, "Sussex");
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by country
+     */
+    @Test
+    void viewTopPopulatedCitiesInCountryByN() {
+        app.printTopPopulatedCitiesInCountryByN(5, "United Kingdom");
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by region
+     */
+    @Test
+    void viewTopPopulatedCitiesInRegionByN() {
+        app.printTopPopulatedCitiesInRegionByN(5, "North America");
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by continent
+     */
+    @Test
+    void viewTopPopulatedCitiesInContinentByN() {
+        app.printTopPopulatedCitiesInContinentByN(5, "Europe");
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations
+     */
+    @Test
+    void viewTopPopulatedCitiesInWorldByN() {
+        app.printTopPopulatedCitiesInWorldByN(5);
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by district
+     */
+    @Test
+    void viewTopPopulatedCitiesInDistrict() {
+        app.printTopPopulatedCitiesInDistrict("Sussex");
+    }
+
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by region
+     */
+    @Test
+    void viewTopPopulatedCitiesInRegion() {
+        app.printTopPopulatedCitiesInRegion("North America");
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations by continent
+     */
+    @Test
+    void viewTopPopulatedCitiesInContinent() {
+        app.printTopPopulatedCitiesInContinent("Europe");
+    }
+
+    /**
+     * Ensure that there are no errors when printing the top list of cities populations
+     */
+    @Test
+    void viewTopPopulatedCitiesInWorld() {
+        app.printTopPopulatedCitiesInWorld();
+    }
 }
+
