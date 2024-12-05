@@ -42,6 +42,7 @@ public class App {
         app.printCountryByContinentPopulationData(continent);
         app.printTopNCountryByContinentPopulationData(continent, 5);
         app.printCountryByRegionPopulationData(region);
+        app.printTopNPopulationForCountryData(5);
         app.printTopNCountryByRegionPopulationData(region, 5);
         app.printCityByPopulationData(countryCode);
         app.disconnect();
