@@ -326,7 +326,8 @@ public class DataCollector {
         }
     }
 
-    /**
+
+/**
      * The top N populated countries in a region where N is provided by the user.
      *
      * @param con the Sql Database connection
@@ -371,7 +372,7 @@ public class DataCollector {
         }
     }
 
-    public ArrayList<CapitalCity> getCapitalCityData(Connection con){
+    public ArrayList<CapitalCity> getCapitalCityInWorldData(Connection con){
 
         try {
             // Create an SQL statement
@@ -379,8 +380,195 @@ public class DataCollector {
             // Create string for SQL statement
             String strSelect =
                     "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
-                            "FROM city, country " +
-                            "WHERE city.CountryCode = country.Code AND city.ID = country.Capital AND country.Capital is NOT NULL\n";
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Capital is NOT NULL " +
+                            "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
+
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population, country);
+
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+    public ArrayList<CapitalCity> getCapitalCityByContinentData(Connection con, String continent){
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Capital is NOT NULL AND country.Continent = '" + continent + "' " +
+                            "ORDER BY city.Population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
+
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population, country);
+
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+    public ArrayList<CapitalCity> getCapitalCityByRegionData(Connection con, String region){
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Capital is NOT NULL AND country.Region = '" + region + "' " +
+                            "ORDER BY Population DESC ";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
+
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population, country);
+
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+
+    public ArrayList<CapitalCity> getTopNCapitalCityInWorldData(Connection con, int nProvidedByUser){
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Capital is NOT NULL " +
+                            "ORDER BY city.Population DESC " +
+                            "LIMIT " + nProvidedByUser + ";";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
+
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population, country);
+
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+    public ArrayList<CapitalCity> getTopNCapitalCityByContinentData(Connection con, String continent, int nProvidedByUser){
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Capital is NOT NULL AND country.Continent = '" + continent + "' " +
+                            "ORDER BY city.Population DESC " +
+                            "LIMIT " + nProvidedByUser + ";";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract city information
+            ArrayList<CapitalCity> capitalCities = new ArrayList<>();
+            while (rset.next()) {
+                String name = rset.getString("city.Name");
+                String code = rset.getString("city.CountryCode");
+                String district = rset.getString("city.District");
+                Integer population = rset.getInt("city.Population");
+                String country = rset.getString("country.Name");
+
+                CapitalCity capitalCity = new CapitalCity(name, code, district, population, country);
+
+                capitalCities.add(capitalCity);
+            }
+            return capitalCities;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get capital city details");
+            return null;
+        }
+    }
+
+    public ArrayList<CapitalCity> getTopNCapitalCityRegionData(Connection con, String region, int nProvidedByUser){
+
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Name " +
+                            "FROM city " +
+                            "JOIN country ON country.Code = city.CountryCode " +
+                            "WHERE country.Capital is NOT NULL AND country.Region = '" + region + "' " +
+                            "ORDER BY Population DESC " +
+                            "LIMIT " + nProvidedByUser + ";";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract city information
