@@ -188,6 +188,21 @@ public class App {
     }
 
     /**
+     * Get country by population data.
+     *
+     * @return the array list of countries
+     */
+    public void printTopNPopulationForCountryData(int nProvidedByUser) {
+        ArrayList<Country> countries = dataCol.getTopNPopulationForCountry(dbCon, nProvidedByUser);
+        // Print header
+        System.out.printf("%-10s %-40s %-30s %-25s %-10s %-30s\n", "Code", "Name", "Continent", "Region", "Population", "Capital");
+        // Loop over all countries in the list
+        for (Country country : countries) {
+            System.out.println(country.toString());
+        }
+    }
+
+    /**
      * Get country data.
      *
      * @return the array list of countries

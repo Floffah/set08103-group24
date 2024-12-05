@@ -476,6 +476,48 @@ public class DataCollector {
         }
     }
 
+    /**
+     * The top N populated countries in the world where N is provided by the user.
+     * @param con the Sql Database connection
+     * @param nProvidedByUser the user inputs what number of countries they want to see
+     */
+
+        public ArrayList<Country> getTopNPopulationForCountry(Connection con, int nProvidedByUser) {
+            try {
+                // Create an SQL statement
+                Statement stmt = con.createStatement();
+
+                // SQL query to get all countries sorted by population largest to smallest
+                String strSelect =
+                        "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital " +
+                                "FROM country " +
+                                "ORDER BY country.Population DESC " +
+                                " LIMIT " + nProvidedByUser + ";";
+
+                // Execute SQL statement
+                ResultSet rset = stmt.executeQuery(strSelect);
+
+                // Extract country information
+                ArrayList<Country> countries = new ArrayList<>();
+                while (rset.next()) {
+                    String code = rset.getString("Code");
+                    String name = rset.getString("Name");
+                    String continentName = rset.getString("Continent");
+                    String region = rset.getString("Region");
+                    int population = rset.getInt("Population");
+                    int capital = rset.getInt("Capital");
+
+                    Country country = new Country(code, name, continentName, region, population, capital);
+                    countries.add(country);
+                }
+                return countries;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Failed to get country details by population");
+                return null;
+            }
+        }
+
     public PopulationData getPopulationForCountry(Connection con, String country) {
         try {
             // Create an SQL statement
